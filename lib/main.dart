@@ -50,8 +50,6 @@ class _QuizPageState extends State<QuizPage> {
 //  Question q2 = Question(q:'Approximately one quarter of human bones are in the feet.', a: true);
 //  Question q3 = Question(q:'A slug\'s blood is green.', a: true);
 
-  int questionNumber = 0;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -64,7 +62,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.questionBank[questionNumber].questionText,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -89,7 +87,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                bool correctAnswer = quizBrain.questionBank[questionNumber].questionAnswer;
+                bool correctAnswer = quizBrain.getCorrectAnswer();
 
                 if( correctAnswer == true){
                   print('the user got it right');
@@ -98,7 +96,7 @@ class _QuizPageState extends State<QuizPage> {
                 }
 
                 setState(() {
-                  questionNumber++;
+                  quizBrain.nextQuestion();
                 });
               },
             ),
@@ -119,7 +117,7 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 //The user picked false.
 
-                bool correctAnswer = quizBrain.questionBank[questionNumber].questionAnswer;
+                bool correctAnswer = quizBrain.getCorrectAnswer();
 
                 if( correctAnswer == false){
                   print('the user got it right');
@@ -128,7 +126,7 @@ class _QuizPageState extends State<QuizPage> {
                 }
 
                   setState(() {
-                    questionNumber++;
+                    quizBrain.nextQuestion();
                 });
               },
             ),

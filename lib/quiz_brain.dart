@@ -3,7 +3,12 @@ import 'question.dart';
 // Quizzler - Abstraction > Memecahkan bagian di dalam Aplikasi menjadi beberapa bagian
 
 class QuizBrain{
-  List<Question> questionBank = [
+
+  // Encapsulation _text > Pembungkusan Bagian bagian kerja
+
+  int _questionNumber = 0;
+
+  List<Question> _questionBank = [
 
   Question('Some cats are actually allergic to humans', true),
   Question('You can lead a cow down stairs but not up stairs.', false),
@@ -32,4 +37,22 @@ class QuizBrain{
   true),
 
   ];
+
+  void nextQuestion(){
+    if(_questionNumber < _questionBank.length - 1){
+      _questionNumber++;
+    }
+    print(_questionNumber);
+    print(_questionBank.length);
+  }
+
+  String getQuestionText(){
+    return _questionBank[_questionNumber].questionText;
+  }
+
+  bool getCorrectAnswer(){
+    return _questionBank[_questionNumber].questionAnswer;
+  }
+
+
 }
